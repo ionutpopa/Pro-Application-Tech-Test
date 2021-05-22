@@ -1,0 +1,16 @@
+.flex {
+  flex-direction: row !important;
+  width: 20%;
+  justify-content: space-around;
+}
+
+.btn-secondary {
+  margin: 20px;
+}
+
+.single-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}

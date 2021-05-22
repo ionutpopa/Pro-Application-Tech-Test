@@ -1,7 +1,20 @@
-const Logout = () => {
-    return (
-        <div>Logout</div>
-    )
-}
+import Navbar from "./navbar";
 
-export default Logout
+const Logout = (props) => {
+  const logoutUser = () => {
+    localStorage.setItem("is_logged_in", "false");
+    props.history.push("/");
+  };
+  return (
+    <div>
+      <Navbar />
+      <div className="single-button">
+        <button type="button" onClick={logoutUser} className="btn btn-danger">
+          Logout
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Logout;
