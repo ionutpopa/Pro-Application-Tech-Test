@@ -3,6 +3,7 @@ import Navbar from "./navbar";
 const Logout = (props) => {
   const logoutUser = () => {
     localStorage.setItem("is_logged_in", "false");
+    localStorage.removeItem("data")
     props.history.push("/");
   };
   return (

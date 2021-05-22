@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "./navbar";
 import SortButton from "./sort-button";
+import { connect } from "react-redux";
 
 const Home = () => {
   const data = JSON.parse(localStorage.getItem("data"));
@@ -68,4 +69,12 @@ const Home = () => {
   );
 };
 
-export default Home;
+//  export default Home;
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.data,
+  };
+};
+
+export default connect(mapStateToProps)(Home);
