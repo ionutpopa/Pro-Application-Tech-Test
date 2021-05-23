@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "./navbar";
 import SortButton from "./sort-button";
 import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/actions";
 
 const Home = () => {
   const data = JSON.parse(localStorage.getItem("data"));
@@ -14,10 +17,19 @@ const Home = () => {
   };
 
   let fakeKey = 0;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(addUser(data));
+  }, [dispatch, data]);
+
   return (
     <div>
       <Navbar />
-
+      <button type="button" className="btn btn-secondary">
+        <Link to="/movies">Movies</Link>
+      </button>
       {data === null ? (
         <p>There is no user</p>
       ) : sortedData.length === 0 ? (
@@ -68,8 +80,6 @@ const Home = () => {
     </div>
   );
 };
-
-//  export default Home;
 
 const mapStateToProps = (state) => {
   return {

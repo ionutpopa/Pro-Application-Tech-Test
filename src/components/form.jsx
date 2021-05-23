@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { addUser } from "../redux/actions";
 
 const Form = (props) => {
   const [dataNasterii, setDataNasterii] = useState("");
@@ -15,7 +13,7 @@ const Form = (props) => {
     if (user.dataNasterii === "" || user.email === "") {
       return;
     }
-    props.addUser(user);
+    
     let data = [];
     const oldData = JSON.parse(localStorage.getItem("data"));
     if (oldData) {
@@ -67,15 +65,4 @@ const Form = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addUser: () => dispatch(addUser()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default Form;

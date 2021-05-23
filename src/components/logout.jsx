@@ -1,9 +1,14 @@
 import Navbar from "./navbar";
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logUser } from "../redux/actions"
 
 const Logout = (props) => {
+  const dispatch = useDispatch()
   const logoutUser = () => {
     localStorage.setItem("is_logged_in", "false");
-    localStorage.removeItem("data")
+    // localStorage.removeItem("data")
+    dispatch(logUser(false))
     props.history.push("/");
   };
   return (
@@ -18,4 +23,10 @@ const Logout = (props) => {
   );
 };
 
-export default Logout;
+const mapStateToProps = (state) => {
+  return {
+    is_logged_in: state.data,
+  };
+};
+
+export default connect(mapStateToProps)(Logout);
